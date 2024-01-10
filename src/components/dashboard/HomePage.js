@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react';
 import { MDBBadge, MDBBtn, MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
-import { fetchDashboard } from '../../api/fetchDashboard';
+import { useDispatch, useSelector } from 'react-redux';
+import { showDashboard } from '../../redux';
 
 
 export default function HomePage() {
-
+  const dispatch = useDispatch();
+  const storeState = useSelector(state => state);
   function fetchDashboardData() {
-    const dashBoardData= fetchDashboard().then(data => data);
-    console.log('dashBoardData', dashBoardData)
+    dispatch(showDashboard());
   }
 
   useEffect(() => {
-    const data = fetchDashboardData();
-    console.log('data', data);
+    fetchDashboardData();
   }, [])
 
   return (
