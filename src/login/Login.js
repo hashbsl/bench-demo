@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import {
   MDBContainer,
   MDBCol,
@@ -28,16 +28,20 @@ function Login() {
     );
     if (Object.keys(res.data).length > 0) {
       toast("Success", {
-        type : 'success',
-        autoClose: 2000
+        type: "success",
+        autoClose: 2000,
       });
-      navigate('/dashboard')
+      localStorage.setItem('token', res.data.token);
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 2000);
     } else {
       toast("Incorrect email or password", {
-        type : 'error',
-        autoClose: 2000
+        type: "error",
+        autoClose: 2000,
       });
     }
+    console.log(`loginPage`, res)
   };
 
   return (
@@ -56,7 +60,7 @@ function Login() {
           <MDBInput
             wrapperClass="mb-4"
             label="Email address"
-            id="formControlLg"
+            id="email"
             type="email"
             size="lg"
             value={data.email || ""}
@@ -67,7 +71,7 @@ function Login() {
           <MDBInput
             wrapperClass="mb-4"
             label="Password"
-            id="formControlLg"
+            id="password"
             type="password"
             size="lg"
             value={data.password || ""}
