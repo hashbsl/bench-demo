@@ -10,7 +10,7 @@ export const dashboardReducer = (state = initialState, action) => {
         case GET_DASHBOARD_DATA:
             return {
                 ...state,
-                dashboard: [...state.dashboard, action.dashboard]
+                dashboard: [...action.payload]
             };
         default:
             return state;

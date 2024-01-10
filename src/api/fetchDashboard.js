@@ -1,9 +1,10 @@
-async function fetchDashboard() {
+import axios from "axios";
+
+export default async function fetchDashboard() {
     try {
-        await fetch('https://fakestoreapi.com/products?limit=5')
-            .then(resp => resp.json())
-            .then(json => {
-                return json;
+        await axios.get('https://fakestoreapi.com/products?limit=5')
+            .then(response => {
+                return response.data;
             });
     } catch (error) {
         console.log('error', error)
@@ -12,4 +13,3 @@ async function fetchDashboard() {
     }
 }
 
-export { fetchDashboard }
