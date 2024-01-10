@@ -7,8 +7,8 @@ function App() {
   return (
     <BrowserRouter>
      <Routes>
-       <Route path="/Login" exact element={<Login />} />
-       <Route path="/" exact element={<DashBoard />} />
+       <Route path="/" exact element={<Login />} />
+       <Route path="/dashboard" exact element={<DashBoard />} />
      </Routes>
     </BrowserRouter>
   );
