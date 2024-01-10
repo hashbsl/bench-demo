@@ -31,7 +31,7 @@ function Login() {
         type : 'success',
         autoClose: 2000
       });
-      // navigate('/')
+      navigate('/dashboard')
     } else {
       toast("Incorrect email or password", {
         type : 'error',
