@@ -6,7 +6,7 @@ export const showDashboard = () => (dispatch) => {
         return axios.get('https://fakestoreapi.com/products?limit=5').then(dashboard => {
             dispatch({
                 type: GET_DASHBOARD_DATA,
-                dashboard
+                payload: dashboard.data
             })
         })
     } catch(error) {console.log('error', error)};

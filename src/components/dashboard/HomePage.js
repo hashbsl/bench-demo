@@ -6,7 +6,7 @@ import { showDashboard } from '../../redux';
 
 export default function HomePage() {
   const dispatch = useDispatch();
-  const storeState = useSelector(state => state);
+  const storeState = useSelector(state => state.dashboard.dashboard);
   function fetchDashboardData() {
     dispatch(showDashboard());
   }
@@ -19,25 +19,25 @@ export default function HomePage() {
     <MDBTable align='middle'>
       <MDBTableHead>
         <tr>
-          <th scope='col'>Name</th>
+          <th scope='col'>ID</th>
           <th scope='col'>Title</th>
-          <th scope='col'>Status</th>
-          <th scope='col'>Position</th>
+          <th scope='col'>Price</th>
+          <th scope='col'>Rating</th>
           <th scope='col'>Actions</th>
         </tr>
       </MDBTableHead>
       <MDBTableBody>
-        <tr>
+        {storeState.length > 0 ? storeState.map(item => <tr>
           <td>
             <div className='d-flex align-items-center'>
               <div className='ms-3'>
-                <p className='fw-bold mb-1'>John Doe</p>
-                <p className='text-muted mb-0'>john.doe@gmail.com</p>
+                <p className='fw-bold mb-1'>{item.id}</p>
+                <p className='text-muted mb-0'>{item.title}</p>
               </div>
             </div>
           </td>
           <td>
-            <p className='fw-normal mb-1'>Software engineer</p>
+            <p className='fw-normal mb-1'>{item.price}</p>
             <p className='text-muted mb-0'>IT department</p>
           </td>
           <td>
@@ -51,7 +51,7 @@ export default function HomePage() {
               Edit
             </MDBBtn>
           </td>
-        </tr>
+        </tr>) : 'No results found'}
         <tr>
           <td>
             <div className='d-flex align-items-center'>
