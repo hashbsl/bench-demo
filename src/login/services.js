@@ -16,3 +16,11 @@ export async function postData(url, data) {
     console.log(`Error making POST call`, error);
   }
 }
+
+export const authorizeUser = () => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    return true;
+  }
+  return false;
+};

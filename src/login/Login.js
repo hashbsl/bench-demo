@@ -31,6 +31,7 @@ function Login() {
         type: "success",
         autoClose: 2000,
       });
+      localStorage.setItem('token', res.data.token);
       setTimeout(() => {
         navigate("/dashboard");
       }, 2000);
@@ -40,6 +41,7 @@ function Login() {
         autoClose: 2000,
       });
     }
+    console.log(`loginPage`, res)
   };
 
   return (
@@ -58,7 +60,7 @@ function Login() {
           <MDBInput
             wrapperClass="mb-4"
             label="Email address"
-            id="formControlLg"
+            id="email"
             type="email"
             size="lg"
             value={data.email || ""}
@@ -69,7 +71,7 @@ function Login() {
           <MDBInput
             wrapperClass="mb-4"
             label="Password"
-            id="formControlLg"
+            id="password"
             type="password"
             size="lg"
             value={data.password || ""}
