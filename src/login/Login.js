@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {
   MDBContainer,
   MDBCol,
@@ -15,7 +15,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
   const [data, setData] = useState({});
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const signIn = async () => {
     const params = {
@@ -31,7 +31,7 @@ function Login() {
         type : 'success',
         autoClose: 2000
       });
-      // history.push('/')
+      // navigate('/')
     } else {
       toast("Incorrect email or password", {
         type : 'error',
