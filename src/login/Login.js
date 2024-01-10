@@ -18,6 +18,7 @@ function Login() {
   const navigate = useNavigate();
 
   const signIn = async () => {
+    const token = localStorage.getItem("token");
     const params = {
       email: data.email,
       password: data.password,
@@ -26,22 +27,24 @@ function Login() {
       "http://172.208.34.192:2700/dealerLogin",
       params
     );
-    if (Object.keys(res.data).length > 0) {
+    if (Object.keys(res.data)?.length > 0) {
       toast("Success", {
         type: "success",
         autoClose: 2000,
       });
-      localStorage.setItem('token', res.data.token);
-      setTimeout(() => {
+      localStorage.setItem("token", res.data.token);
+      if (res.data.token === token) {
         navigate("/dashboard");
-      }, 2000);
+      } else {
+        localStorage.setItem("token", res.data.token);
+        navigate("/dashboard");
+      }
     } else {
       toast("Incorrect email or password", {
         type: "error",
         autoClose: 2000,
       });
     }
-    console.log(`loginPage`, res)
   };
 
   return (
