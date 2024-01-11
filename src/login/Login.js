@@ -15,6 +15,7 @@ import "../login/Login.css";
 import { postData } from "../api/services";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CryptoJS from 'crypto-js';
 
 function Login() {
   const [data, setData] = useState({ email : '', password : ''});
@@ -42,7 +43,10 @@ function Login() {
         type: "success",
         autoClose: 2000,
       });
-      localStorage.setItem("token", res.data.token);
+      const secretPass = "XkhZG4fW2t2W";
+      const encryptedToken = CryptoJS.AES.encrypt(res.data.token, secretPass).toString();
+      localStorage.setItem("token", encryptedToken);
+      console.log(`diff`, res.data.token, '----', encryptedToken)
       navigate("/dashboard");
     } else {
       toast("Incorrect email or password", {
