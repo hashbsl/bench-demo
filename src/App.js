@@ -3,22 +3,18 @@ import DashBoard from "./components/dashboard/DashBoard";
 import Login from "./login/Login";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import PrivateRoute from "./routes/PrivateRoutes";
-import { authorizeUser } from "./login/services";
+import { authorizeUser } from "./api/services";
 import "./App.css";
 
 function App() {
   const defaultPath = authorizeUser() ? "/dashboard" : '/';
-  React.useEffect(() => {
-    console.log(`app.js`, authorizeUser())
-    // localStorage.removeItem("token");
-  }, [])
   
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
         <Route
-          path={defaultPath}
+          path="/dashboard"
           element={
             <PrivateRoute component={DashBoard} isAuthenticated={authorizeUser()} />
           }

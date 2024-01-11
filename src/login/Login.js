@@ -12,7 +12,7 @@ import {
   MDBValidationItem,
 } from "mdb-react-ui-kit";
 import "../login/Login.css";
-import { postData } from "./services";
+import { postData } from "../api/services";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
