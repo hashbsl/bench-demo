@@ -7,9 +7,7 @@ import { useLocation } from 'react-router-dom';
 
 export default function HomePage() {
   const dispatch = useDispatch();
-  const location = useLocation()
   const storeState = useSelector(state => state.dashboard.dashboard);
-  const [isBlocking, setBlocking] = useState(false);
   function fetchDashboardData() {
     dispatch(showDashboard());
   }
@@ -17,7 +15,6 @@ export default function HomePage() {
   useEffect(() => {
     fetchDashboardData();
   }, [])
-
 
   return (
     <MDBTable align='middle'>
