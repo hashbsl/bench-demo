@@ -1,5 +1,7 @@
-export async function postData(url, data) {
+export async function postData(url, data, setLoader) {
+  console.log(`api called`);
   try {
+    setLoader(true)
     const response = await fetch(url, {
       method: "POST",
       headers: {
@@ -11,8 +13,10 @@ export async function postData(url, data) {
       throw new Error(`HTTP error! Status : ${response.status}`);
     }
     const result = await response.json();
+    setLoader(false)
     return result;
   } catch (error) {
+    setLoader(false)
     console.log(`Error making POST call`, error);
   }
 }
