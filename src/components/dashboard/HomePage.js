@@ -1,12 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MDBBadge, MDBBtn, MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
 import { useDispatch, useSelector } from 'react-redux';
 import { showDashboard } from '../../redux';
+import { useLocation } from 'react-router-dom';
 
 
 export default function HomePage() {
   const dispatch = useDispatch();
+  const location = useLocation()
   const storeState = useSelector(state => state.dashboard.dashboard);
+  const [isBlocking, setBlocking] = useState(false);
   function fetchDashboardData() {
     dispatch(showDashboard());
   }
@@ -14,6 +17,7 @@ export default function HomePage() {
   useEffect(() => {
     fetchDashboardData();
   }, [])
+
 
   return (
     <MDBTable align='middle'>
@@ -28,7 +32,7 @@ export default function HomePage() {
       </MDBTableHead>
       <MDBTableBody>
         {storeState.length > 0 ? storeState.map(item => <tr>
-          <td>
+          <td key={item.id}>
             <div className='d-flex align-items-center'>
               <div className='ms-3'>
                 <p className='fw-bold mb-1'>{item.id}</p>

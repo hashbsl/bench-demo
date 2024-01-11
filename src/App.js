@@ -18,7 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route
-          path="/dashboard"
+          path={defaultPath}
           element={
             <PrivateRoute component={DashBoard} isAuthenticated={authorizeUser()} />
           }
